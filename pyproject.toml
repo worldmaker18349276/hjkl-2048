@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hjkl-2048"
-version = "1.0.0"
+version = "1.1.0"
 description = "play 2048 with hjkl"
 authors = ["worldmaker <worldmaker18349276@gmail.com>"]
 

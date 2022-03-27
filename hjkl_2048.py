@@ -14,22 +14,16 @@ def main():
 
             scr.addstr(0,0, str(board))
 
-            view = board
-            for _ in range("hjlk".index(scr.getkey())):
-                view = numpy.rot90(view)
+            view = numpy.rot90(board, "hjlk".index(scr.getkey()))
 
             moved = False
             for line in view:
-                r = list(line[line!=0])
-                i = 0
-                while i < len(r)-1:
-                    if r[i] == r[i+1]:
+                r = [*line[line!=0], *[0]*4]
+                for i in range(3):
+                    if r[i] == r[i+1] != 0:
                         r[i:i+2] = [r[i]+1]
-                    i += 1
-                r.extend([0]*(4-len(r)))
-                if (line != r).any():
-                    moved = True
-                line[:] = r
+                moved |= (line != r[:4]).any()
+                line[:] = r[:4]
 
         scr.addstr("END")
         scr.getkey()
